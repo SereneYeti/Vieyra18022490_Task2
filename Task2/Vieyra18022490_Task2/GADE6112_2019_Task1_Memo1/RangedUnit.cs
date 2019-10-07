@@ -13,7 +13,8 @@ namespace Vieyra18022490_Task2
 {
     
     public class RangedUnit : Unit
-    {
+    {   //Ranged Unit class, Inherits from the Unit class
+        //Variables reflect Unit class
         //isDead field used for Death method
         public bool IsDead { get; set; }
         public string Name
@@ -79,7 +80,7 @@ namespace Vieyra18022490_Task2
         }
 
         public RangedUnit(int x, int y, int h, int s, int a, int ar, int f, string sy)
-        {
+        {   //Constructor
             XPos = x;
             YPos = y;
             Health = h;
@@ -94,15 +95,15 @@ namespace Vieyra18022490_Task2
         }
 
         public RangedUnit()
-        { }
+        { } //Constructor
         public override void Death()
-        {
+        {   //Handles the death of a ranged Unit
             symbol = "X";
             IsDead = true;
         }
 
         public override void Move(int dir)
-        {
+        {   //Handles the movement of the units
             switch(dir)
             {
                 case 0: YPos--;  break; //North
@@ -114,7 +115,7 @@ namespace Vieyra18022490_Task2
         }
 
         public override void Combat(Unit attacker)
-        {
+        {   //Handles the combat between two units
             if (attacker is MeleeUnit)
             {
                 Health = Health - ((MeleeUnit)attacker).Attack;
@@ -126,13 +127,13 @@ namespace Vieyra18022490_Task2
             }
 
             if(Health <= 0)
-            {
+            {   //Confirms wheterh the attacked unit has any health remaining, if it doesn't the Death method is called
                 Death(); //DEATH !!!
             }
         }
 
         public override bool InRange(Unit other)
-        {
+        {   //Confrims if a unit is in range to attack
             int distance = 0;
             int otherX = 0;
             int otherY = 0;
@@ -159,7 +160,7 @@ namespace Vieyra18022490_Task2
         }
 
         public override (Unit, int) Closest(List<Unit> units)
-        {
+        {   //Confirms the closest possilbe unit for attack
             int shortest = 100;
             Unit closest = this;
             //Closest Unit and Distance                    
@@ -193,7 +194,7 @@ namespace Vieyra18022490_Task2
         }
 
         public override string ToString()
-        {
+        {   //Override of the ToString Funciton in order to return the required string output when needed with ease.
             string temp = "";
             temp += "Ranged: ";
             temp += Name;

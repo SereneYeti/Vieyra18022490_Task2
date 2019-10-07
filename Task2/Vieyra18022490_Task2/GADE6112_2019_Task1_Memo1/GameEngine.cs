@@ -9,7 +9,7 @@ using System.Drawing;
 namespace Vieyra18022490_Task2
 {
     public class GameEngine
-    {
+    {   //Class that deals with the processing of the in game logic and mechanics and implements everything.
         Map map = new Map();
         private int round;
         Random r = new Random();
@@ -31,7 +31,7 @@ namespace Vieyra18022490_Task2
        
 
         public GameEngine(int numUnits, TextBox txtInfo, GroupBox gMap, int numB, Timer timer, Label lbl)
-        {
+        {   //Constructor
             grpMap = gMap;
             tmr = timer;
             resourcesLbl = lbl;
@@ -43,10 +43,10 @@ namespace Vieyra18022490_Task2
         }
 
         public GameEngine()
-        { }
+        { } //Constructor
 
         public void Update()
-        {
+        {   //Handling of all the ingame logic and processing occurs in this method.
             FactoryBuilding factoryBuilding = new FactoryBuilding(r.Next(0, 2), 2, 5, 5, 10, r.Next(0, 2), "FB");
 
             for (int i = 0; i < map.Units.Count; i++)
@@ -217,20 +217,20 @@ namespace Vieyra18022490_Task2
 
         public void Save()
         {
-
+            //The save methods created in the map class are collected here to be called all together
             map.SaveUnits();
             map.SaveBuilding();
         }
 
         public void Read()
         {
-
+            //The read methods created in the map class are collected here to be called all together
             units = map.ReadUnits();
             buildings = map.ReadBuildings();
         }
 
         public void DisplayAfterRead(GroupBox groupBox)
-        {
+        {   //Handles re-desplaying of the previously saved information
             groupBox.Controls.Clear();
 
             foreach (Unit u in units)
